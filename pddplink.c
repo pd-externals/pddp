@@ -180,7 +180,7 @@ static int pddplink_wbclick(t_gobj *z, t_glist *glist, int xpix, int ypix,
         return (0);
 }
 
-static int pddplink_isoption(char *name)
+static int pddplink_isoption(const char *name)
 {
     if (*name == '-')
     {
@@ -208,7 +208,8 @@ static t_symbol *pddplink_nextsymbol(int ac, t_atom *av, int opt, int *skipp)
 static int pddplink_dooptext(char *dst, int maxsize, int ac, t_atom *av)
 {
     int i, sz, sep, len;
-    char buf[32], *src;
+    char buf[32];
+    const char *src;
     for (i = 0, sz = 0, sep = 0; i < ac; i++, av++)
     {
 	if (sep)
@@ -228,7 +229,7 @@ static int pddplink_dooptext(char *dst, int maxsize, int ac, t_atom *av)
 	else if (av->a_type == A_FLOAT)
 	{
 	    src = buf;
-	    sprintf(src, "%g", av->a_w.w_float);
+	    sprintf(buf, "%g", av->a_w.w_float);
 	}
 	else
 	{
