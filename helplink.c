@@ -26,25 +26,25 @@ typedef struct _pddplink t_helplink;
 static t_class *helplink_class;
 
 static void helplink_getrect(t_gobj *z, t_glist *glist,
-			     int *xp1, int *yp1, int *xp2, int *yp2)
+                             int *xp1, int *yp1, int *xp2, int *yp2)
 {
     t_helplink *x = (t_helplink *)z;
     int width, height;
     float x1, y1, x2, y2;
     if (glist->gl_editor && glist->gl_editor->e_rtext)
     {
-	if (x->x_rtextactive)
-	{
-	    t_rtext *y = _glist_getrtext(glist, (t_text *)x);
-	    _getrect_dimen(y, &width, &height);
-	    height -= 2;
-	}
-	else
-	{
-	    int font = glist_getfont(glist);
-	    width = x->x_vislength * sys_fontwidth(font) + 2;
-	    height = sys_fontheight(font) + 2;
-	}
+        if (x->x_rtextactive)
+        {
+            t_rtext *y = _glist_getrtext(glist, (t_text *)x);
+            _getrect_dimen(y, &width, &height);
+            height -= 2;
+        }
+        else
+        {
+            int font = glist_getfont(glist);
+            width = x->x_vislength * sys_fontwidth(font) + 2;
+            height = sys_fontheight(font) + 2;
+        }
     }
     else width = height = 10;
     x1 = text_xpix((t_text *)x, glist);
@@ -55,6 +55,7 @@ static void helplink_getrect(t_gobj *z, t_glist *glist,
     *yp1 = y1;
     *xp2 = x2;
     *yp2 = y2;
+
 }
 
 static void helplink_displace(t_gobj *z, t_glist *glist, int dx, int dy)
@@ -76,7 +77,7 @@ static void helplink_select(t_gobj *z, t_glist *glist, int state)
     rtext_select(y, state);
     if (glist_isvisible(glist) && glist->gl_havewindow)
     {
-	if (state)
+        if (state)
 	    sys_vgui(".x%lx.c itemconfigure %s -fill blue\n",
 		     glist, rtext_gettag(y));
 	else
@@ -121,7 +122,7 @@ static void helplink_doclick(t_helplink *x)
     char dirbuf[MAXPDSTRING], *nameptr;
     int fd = canvas_open(x->x_glist, objectname, "-help.pd",
                          dirbuf, &nameptr, MAXPDSTRING, 0);
-    
+
     if (fd < 0) {
         /* if canvas_open() failed try open_via_helppath() */
         open_via_helppath(objectname, canvas_getdir(x->x_glist)->s_name);
