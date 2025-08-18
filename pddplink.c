@@ -152,6 +152,8 @@ static void pddplink_anything(t_pddplink *x, t_symbol *s, int ac, t_atom *av)
 static void pddplink_click(t_pddplink *x, t_floatarg xpos, t_floatarg ypos,
 			   t_floatarg shift, t_floatarg ctrl, t_floatarg alt)
 {
+    (void)xpos;(void)ypos;(void)shift;(void)ctrl;(void)alt;
+
     x->x_ishit = 1;
     sys_vgui("pddplink_open {%s} {%s}\n",               \
              x->x_ulink->s_name, x->x_dirsym->s_name);
@@ -166,6 +168,7 @@ static void pddplink_bang(t_pddplink *x)
 static int pddplink_wbclick(t_gobj *z, t_glist *glist, int xpix, int ypix,
 			    int shift, int alt, int dbl, int doit)
 {
+    (void)glist;(void)dbl;
     t_pddplink *x = (t_pddplink *)z;
     if (doit)
     {
@@ -268,6 +271,7 @@ static void pddplink_free(t_pddplink *x)
 
 static void *pddplink_new(t_symbol *s, int ac, t_atom *av)
 {
+    (void)s;
     t_pddplink xgen, *x;
     int skip;
     xgen.x_isboxed = 0;
