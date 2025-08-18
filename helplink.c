@@ -167,14 +167,15 @@ static void *helplink_new(t_symbol *s)
         x->x_ulink = gensym("helplink"); /* default to helplink help patch */
     else
         x->x_ulink = s;
-	/* do we need to set ((t_text *)x)->te_type = T_TEXT; ? */
-	if (!x->x_vistext)
-	{
-	    x->x_vislength = strlen(x->x_ulink->s_name);
-	    x->x_vissize = x->x_vislength + 1;
-	    x->x_vistext = getbytes(x->x_vissize);
-	    strcpy(x->x_vistext, x->x_ulink->s_name);
-	}
+
+    /* do we need to set ((t_text *)x)->te_type = T_TEXT; ? */
+    if (!x->x_vistext)
+    {
+      x->x_vislength = strlen(x->x_ulink->s_name);
+      x->x_vissize = x->x_vislength + 1;
+      x->x_vistext = getbytes(x->x_vissize);
+      strcpy(x->x_vistext, x->x_ulink->s_name);
+    }
     return (x);
 }
 
