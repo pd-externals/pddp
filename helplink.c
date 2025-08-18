@@ -104,14 +104,14 @@ static void helplink_vis(t_gobj *z, t_glist *glist, int vis)
             && (y = _glist_getrtext(glist, (t_text *)x)))
         {
             rtext_draw(y);
-	    sys_vgui(".x%lx.c itemconfigure %s -text {%s} -fill #0000dd -activefill #e70000\n",
-		     glist_getcanvas(glist), rtext_gettag(y), x->x_vistext);
+            sys_vgui(".x%lx.c itemconfigure %s -text {%s} -fill #0000dd -activefill #e70000\n",
+                     glist_getcanvas(glist), rtext_gettag(y), x->x_vistext);
         }
     }
     else
     {
         if ((glist->gl_havewindow || x->x_isgopvisible)
-	    && (y = _glist_getrtext(glist, (t_text *)x)))
+            && (y = _glist_getrtext(glist, (t_text *)x)))
             rtext_erase(y);
     }
 }
@@ -135,7 +135,7 @@ static void helplink_doclick(t_helplink *x)
 }
 
 static int helplink_click(t_gobj *z, t_glist *glist, int xpix, int ypix,
-			    int shift, int alt, int dbl, int doit)
+                            int shift, int alt, int dbl, int doit)
 {
     (void)xpix;(void)ypix;(void)shift;(void)alt;(void)dbl;
     t_helplink *x = (t_helplink *)z;
@@ -198,11 +198,11 @@ void helplink_setup(void)
       return;
 
     helplink_class = class_new(gensym("helplink"),
-			       (t_newmethod)helplink_new,
-			       (t_method)helplink_free,
-			       sizeof(t_helplink),
-			       CLASS_PATCHABLE,
-			       A_DEFSYMBOL, 0);
+                               (t_newmethod)helplink_new,
+                               (t_method)helplink_free,
+                               sizeof(t_helplink),
+                               CLASS_PATCHABLE,
+                               A_DEFSYMBOL, 0);
 
     class_addbang(helplink_class, helplink_doclick);
     class_setwidget(helplink_class, &helplink_widgetbehavior);
