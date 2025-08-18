@@ -117,7 +117,7 @@ static void helplink_vis(t_gobj *z, t_glist *glist, int vis)
 
 static void helplink_doclick(t_helplink *x)
 {
-    char* objectname = x->x_ulink->s_name;
+    const char* objectname = x->x_ulink->s_name;
     char dirbuf[MAXPDSTRING], *nameptr;
     int fd = canvas_open(x->x_glist, objectname, "-help.pd",
                          dirbuf, &nameptr, MAXPDSTRING, 0);
