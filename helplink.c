@@ -35,9 +35,9 @@ static void helplink_getrect(t_gobj *z, t_glist *glist,
     {
 	if (x->x_rtextactive)
 	{
-	    t_rtext *y = glist_findrtext(glist, (t_text *)x);
-	    width = rtext_width(y);
-	    height = rtext_height(y) - 2;
+	    t_rtext *y = _glist_getrtext(glist, (t_text *)x);
+	    _getrect_dimen(y, &width, &height);
+	    height -= 2;
 	}
 	else
 	{
@@ -64,7 +64,7 @@ static void helplink_displace(t_gobj *z, t_glist *glist, int dx, int dy)
     t->te_ypix += dy;
     if (glist_isvisible(glist))
     {
-        t_rtext *y = glist_findrtext(glist, t);
+        t_rtext *y = _glist_getrtext(glist, t);
         rtext_displace(y, dx, dy);
     }
 }
@@ -72,7 +72,7 @@ static void helplink_displace(t_gobj *z, t_glist *glist, int dx, int dy)
 static void helplink_select(t_gobj *z, t_glist *glist, int state)
 {
     t_helplink *x = (t_helplink *)z;
-    t_rtext *y = glist_findrtext(glist, (t_text *)x);
+    t_rtext *y = _glist_getrtext(glist, (t_text *)x);
     rtext_select(y, state);
     if (glist_isvisible(glist) && glist->gl_havewindow)
     {
@@ -88,7 +88,7 @@ static void helplink_select(t_gobj *z, t_glist *glist, int state)
 static void helplink_activate(t_gobj *z, t_glist *glist, int state)
 {
     t_helplink *x = (t_helplink *)z;
-    t_rtext *y = glist_findrtext(glist, (t_text *)x);
+    t_rtext *y = _glist_getrtext(glist, (t_text *)x);
     rtext_activate(y, state);
     x->x_rtextactive = state;
 }
@@ -100,7 +100,7 @@ static void helplink_vis(t_gobj *z, t_glist *glist, int vis)
     if (vis)
     {
         if ((glist->gl_havewindow || x->x_isgopvisible)
-            && (y = glist_findrtext(glist, (t_text *)x)))
+            && (y = _glist_getrtext(glist, (t_text *)x)))
         {
             rtext_draw(y);
 	    sys_vgui(".x%lx.c itemconfigure %s -text {%s} -fill #0000dd -activefill #e70000\n",
@@ -110,7 +110,7 @@ static void helplink_vis(t_gobj *z, t_glist *glist, int vis)
     else
     {
         if ((glist->gl_havewindow || x->x_isgopvisible)
-	    && (y = glist_findrtext(glist, (t_text *)x)))
+	    && (y = _glist_getrtext(glist, (t_text *)x)))
             rtext_erase(y);
     }
 }
