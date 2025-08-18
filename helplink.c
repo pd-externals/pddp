@@ -136,6 +136,7 @@ static void helplink_doclick(t_helplink *x)
 static int helplink_click(t_gobj *z, t_glist *glist, int xpix, int ypix,
 			    int shift, int alt, int dbl, int doit)
 {
+    (void)xpix;(void)ypix;(void)shift;(void)alt;(void)dbl;
     t_helplink *x = (t_helplink *)z;
     if (glist->gl_havewindow || x->x_isgopvisible)
     {
@@ -192,6 +193,9 @@ static t_widgetbehavior helplink_widgetbehavior =
 
 void helplink_setup(void)
 {
+    if(!pddplink_compatfuns())
+      return;
+
     helplink_class = class_new(gensym("helplink"),
 			       (t_newmethod)helplink_new,
 			       (t_method)helplink_free,
