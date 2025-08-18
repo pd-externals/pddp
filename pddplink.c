@@ -10,6 +10,7 @@
 #include <string.h>
 #include "m_pd.h"
 #include "m_imp.h"  /* FIXME need access to c_externdir... */
+#include "s_stuff.h"
 #include "g_canvas.h"
 
 typedef t_rtext *(*t_glist_rtext_fn)(t_glist *, t_text *);
@@ -111,11 +112,15 @@ static void pddplink_select(t_gobj *z, t_glist *glist, int state)
     t_rtext *y = _glist_getrtext(glist, (t_text *)x);
     rtext_select(y, state);
     if (state)
-        sys_vgui(".x%lx.c itemconfigure %s -fill blue\n",
-                 glist, rtext_gettag(y));
+      pdgui_vmess(0, "crs rk", glist, "itemconfigure", rtext_gettag(y)
+		  , "-fill", 0x0000FF
+	);
     else
-        sys_vgui(".x%lx.c itemconfigure %s -text {%s} -fill #0000dd -activefill #e70000\n",
-                 glist, rtext_gettag(y), x->x_vistext);
+      pdgui_vmess(0, "crs rs rk rk", glist, "itemconfigure", rtext_gettag(y)
+		  , "-text", x->x_vistext
+		  , "-fill", 0x0000DD
+		  , "-activefill", 0x700000
+	);
 }
 
 static void pddplink_activate(t_gobj *z, t_glist *glist, int state)
@@ -133,8 +138,11 @@ static void pddplink_vis(t_gobj *z, t_glist *glist, int vis)
     if (vis)
     {
         rtext_draw(y);
-        sys_vgui(".x%lx.c itemconfigure %s -text {%s} -fill #0000dd -activefill #e70000\n",
-                 glist_getcanvas(glist), rtext_gettag(y), x->x_vistext);
+	pdgui_vmess(0, "crs rs rk rk", glist_getcanvas(glist), "itemconfigure", rtext_gettag(y)
+		  , "-text", x->x_vistext
+		  , "-fill", 0x0000DD
+		  , "-activefill", 0x700000
+	);
     }
     else
         rtext_erase(y);
@@ -182,8 +190,10 @@ static void pddplink_click(t_pddplink *x, t_floatarg xpos, t_floatarg ypos,
     (void)xpos;(void)ypos;(void)shift;(void)ctrl;(void)alt;
 
     x->x_ishit = 1;
-    sys_vgui("pddplink_open {%s} {%s}\n",               \
-             x->x_ulink->s_name, x->x_dirsym->s_name);
+    pdgui_vmess("pddplink_open", "ss"
+		, x->x_ulink->s_name
+		, x->x_dirsym->s_name
+      );
     x->x_ishit = 0;
 }
 
@@ -361,8 +371,6 @@ static void *pddplink_new(t_symbol *s, int ac, t_atom *av)
 
 void pddplink_setup(void)
 {
-    t_symbol *dirsym;
-
     _glist_getrtext = (t_glist_rtext_fn)sys_getfunbyname("glist_getrtext");
     if (!_glist_getrtext)
       _glist_getrtext = (t_glist_rtext_fn)sys_getfunbyname("glist_findrtext");
@@ -401,6 +409,9 @@ void pddplink_setup(void)
 		    gensym("click"),
 		    A_FLOAT, A_FLOAT, A_FLOAT, A_FLOAT, A_FLOAT, 0);
 
-    dirsym = pddplink_class->c_externdir;  /* FIXME */
-    sys_vgui("source {%s/pddplink.tcl}\n", dirsym->s_name);
+    t_symbol* dirsym = pddplink_class->c_externdir;  /* FIXME */
+    char tclsourcefile[MAXPDSTRING];
+    pd_snprintf(tclsourcefile, MAXPDSTRING, "%s/pddplink.tcl", dirsym->s_name);
+    tclsourcefile[MAXPDSTRING-1] = 0;
+    pdgui_vmess("source", "s", tclsourcefile);
 }
