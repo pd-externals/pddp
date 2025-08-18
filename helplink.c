@@ -78,11 +78,15 @@ static void helplink_select(t_gobj *z, t_glist *glist, int state)
     if (glist_isvisible(glist) && glist->gl_havewindow)
     {
         if (state)
-	    sys_vgui(".x%lx.c itemconfigure %s -fill blue\n",
-		     glist, rtext_gettag(y));
-	else
-	    sys_vgui(".x%lx.c itemconfigure %s -text {%s} -fill #0000dd -activefill #e70000\n",
-		     glist, rtext_gettag(y), x->x_vistext);
+          pdgui_vmess(0, "crs rk", glist, "itemconfigure", rtext_gettag(y)
+                      , "-fill", 0x0000FF
+            );
+        else
+          pdgui_vmess(0, "crs rs rk rk", glist, "itemconfigure", rtext_gettag(y)
+                      , "-text", x->x_vistext
+                      , "-fill", 0x0000DD
+                      , "-activefill", 0xE70000
+            );
     }
 }
 
@@ -104,12 +108,13 @@ static void helplink_vis(t_gobj *z, t_glist *glist, int vis)
             && (y = _glist_getrtext(glist, (t_text *)x)))
         {
             rtext_draw(y);
-            sys_vgui(".x%lx.c itemconfigure %s -text {%s} -fill #0000dd -activefill #e70000\n",
-                     glist_getcanvas(glist), rtext_gettag(y), x->x_vistext);
+            pdgui_vmess(0, "crs rs rk rk", glist_getcanvas(glist), "itemconfigure", rtext_gettag(y)
+                  , "-text", x->x_vistext
+                  , "-fill", 0x0000DD
+                  , "-activefill", 0xE70000
+              );
         }
-    }
-    else
-    {
+    } else {
         if ((glist->gl_havewindow || x->x_isgopvisible)
             && (y = _glist_getrtext(glist, (t_text *)x)))
             rtext_erase(y);
