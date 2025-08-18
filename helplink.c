@@ -6,6 +6,8 @@
    a new core object type, T_LINK (te_type bitfield would have to be
    extended then). */
 
+#include "pddplink.h"
+
 #include <stdio.h>
 #include <string.h>
 #ifdef _WIN32
@@ -14,24 +16,12 @@
 # include <unistd.h>
 #endif
 
-#include "m_pd.h"
 #include "m_imp.h"
-#include "g_canvas.h"
 
 /* this isn't in any header, but its declared in s_path.c */
 void open_via_helppath(const char *name, const char *dir);
 
-typedef struct _helplink
-{
-    t_object   x_ob;
-    t_glist   *x_glist;
-    int        x_isgopvisible;
-    char      *x_vistext;
-    int        x_vissize;
-    int        x_vislength;
-    int        x_rtextactive;
-    t_symbol  *x_ulink;
-} t_helplink;
+typedef struct _pddplink t_helplink;
 
 static t_class *helplink_class;
 
