@@ -76,7 +76,7 @@ static void pddplink_select(t_gobj *z, t_glist *glist, int state)
       pdgui_vmess(0, "crs rs rk rk", glist, "itemconfigure", rtext_gettag(y)
                   , "-text", x->x_vistext
                   , "-fill", 0x0000DD
-                  , "-activefill", 0x700000
+                  , "-activefill", 0xE70000
         );
 }
 
@@ -98,7 +98,7 @@ static void pddplink_vis(t_gobj *z, t_glist *glist, int vis)
         pdgui_vmess(0, "crs rs rk rk", glist_getcanvas(glist), "itemconfigure", rtext_gettag(y)
                   , "-text", x->x_vistext
                   , "-fill", 0x0000DD
-                  , "-activefill", 0x700000
+                  , "-activefill", 0xE70000
         );
     }
     else
