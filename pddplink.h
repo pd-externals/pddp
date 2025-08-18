@@ -62,7 +62,11 @@ typedef struct _pddplink
 {
     t_object   x_ob;
     t_glist   *x_glist;
-    int        x_isboxed;
+    union
+    {
+        int x_isboxed;       /* number of items per channel */
+        int x_isgopvisible;  /* for source compatibility: pre-0.54 name */
+    };
     char      *x_vistext;
     int        x_vissize;
     int        x_vislength;
