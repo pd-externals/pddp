@@ -30,7 +30,7 @@ static void helplink_getrect(t_gobj *z, t_glist *glist,
 {
     t_helplink *x = (t_helplink *)z;
     int width, height;
-    float x1, y1, x2, y2;
+    int x1, y1, x2, y2;
     if (glist->gl_editor && glist->gl_editor->e_rtext)
     {
         if (x->x_rtextactive)
