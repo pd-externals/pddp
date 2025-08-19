@@ -6,3 +6,5 @@ on: push
 jobs:
   pd-lib-builder:
     uses: pure-data/pure-data-ci/.github/workflows/pd-lib-builder.yml@main
+    with:
+      pd-version: "0.55-0"
