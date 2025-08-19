@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 usage () {
   cat << EOF
@@ -8,7 +8,7 @@ EOF
 
 infile="$1"
 
-[ "$#" == 0 ] && { usage; exit 1; }
+[ $# -eq 0 ] && { usage; exit 1; }
 
 SOURCE_NAME="${infile##*/}"
 SOURCE_STUB="${SOURCE_NAME%.xml}"
