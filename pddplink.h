@@ -13,11 +13,12 @@ typedef void (*t_rtext_getrect_fn)(t_rtext *x, int *x1p, int *y1p, int *x2p, int
 typedef int (*t_rtext_dimen_fn)(t_rtext *x);
 typedef void (*t_getrect_dimen_fn)(t_rtext *x, int *w, int *h);
 
-static t_glist_rtext_fn _glist_getrtext;
-static t_rtext_dimen_fn _rtext_width, _rtext_height;
-static t_rtext_getrect_fn _rtext_getrect;
-static t_getrect_dimen_fn _getrect_dimen;
+static t_glist_rtext_fn _glist_getrtext = 0;
+static t_rtext_dimen_fn _rtext_width = 0, _rtext_height = 0;
+static t_rtext_getrect_fn _rtext_getrect = 0;
+static t_getrect_dimen_fn _getrect_dimen = 0;
 
+#define PDDP_VERSION(a,b,c) (((a) << 16) + ((b) << 8) + ((c) > 255 ? 255 : (c)))
 
 static void _getrect_dummy (t_rtext *y, int *width, int *height) {
   (void)y;
@@ -36,15 +37,18 @@ static void _getrect_056 (t_rtext *y, int *width, int *height) {
 }
 
 static int pddplink_compatfuns(void) {
+#if (PDDP_VERSION(PD_MAJOR_VERSION, PD_MINOR_VERSION, PD_BUGFIX_VERSION) >= PDDP_VERSION(0, 55, 0))
+  /* sys_getfunbyname() requires Pd>=0.55 */
     _glist_getrtext = (t_glist_rtext_fn)sys_getfunbyname("glist_getrtext");
     if (!_glist_getrtext)
       _glist_getrtext = (t_glist_rtext_fn)sys_getfunbyname("glist_findrtext");
     _rtext_width = (t_rtext_dimen_fn)sys_getfunbyname("rtext_width");
     _rtext_height = (t_rtext_dimen_fn)sys_getfunbyname("rtext_height");
     _rtext_getrect = (t_rtext_getrect_fn)sys_getfunbyname("rtext_getrect");
+#endif
 
     if (!_glist_getrtext) {
-      pd_error(0, "'glist_getrtext'/'glist_findrtext' missing from Pd");
+      pd_error(0, "Unable to find 'glist_getrtext'/'glist_findrtext' in this Pd runtime");
       return 0;
     }
     if(_rtext_getrect)
