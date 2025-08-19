@@ -1,11 +1,12 @@
-
 pddp
-----
+====
 
 This library was started to provide useful objects for documentation, and its
-name comes from the Pure Data Documentation Project.  The pddplink object is
-derived from the pddplink object written by Kzrysztof Czaja in 
-externals/miXed/pddp/pddplink.c.  That version also includes a web server.
+name comes from the Pure Data Documentation Project.
+
+The [pddplink] object is derived from the pddplink object written by Kzrysztof Czaja in
+his *miXed* library (externals/miXed/pddp/pddplink.c).
+That version also includes a web server.
 
 
 [pddplink] ChangeLog
