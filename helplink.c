@@ -47,8 +47,9 @@ static void helplink_getrect(t_gobj *z, t_glist *glist,
         }
     }
     else width = height = 10;
-    x1 = text_xpix((t_text *)x, glist);
-    y1 = text_ypix((t_text *)x, glist) + 1;
+
+    x1 = text_xpix(&x->x_ob, glist);
+    y1 = text_ypix(&x->x_ob, glist) + 1;
     x2 = x1 + width;
     y2 = y1 + height + 1;
     *xp1 = x1;
