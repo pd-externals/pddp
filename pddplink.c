@@ -10,7 +10,6 @@
 
 #include <stdio.h>
 #include <string.h>
-#include "m_imp.h"  /* FIXME need access to c_externdir... */
 #include "s_stuff.h"
 
 
@@ -349,9 +348,8 @@ void pddplink_setup(void)
                     gensym("click"),
                     A_FLOAT, A_FLOAT, A_FLOAT, A_FLOAT, A_FLOAT, 0);
 
-    t_symbol* dirsym = pddplink_class->c_externdir;  /* FIXME */
     char tclsourcefile[MAXPDSTRING];
-    pd_snprintf(tclsourcefile, MAXPDSTRING, "%s/pddplink.tcl", dirsym->s_name);
+    pd_snprintf(tclsourcefile, MAXPDSTRING, "%s/pddplink.tcl", class_gethelpdir(pddplink_class));
     tclsourcefile[MAXPDSTRING-1] = 0;
     pdgui_vmess("source", "s", tclsourcefile);
 }

@@ -16,7 +16,7 @@
 # include <unistd.h>
 #endif
 
-#include "m_imp.h"
+#include "m_imp.h" /* required for glob_evalfile() */
 
 /* this isn't in any header, but its declared in s_path.c */
 void open_via_helppath(const char *name, const char *dir);
