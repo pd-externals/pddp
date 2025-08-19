@@ -187,13 +187,17 @@ static void *helplink_new(t_symbol *s)
     return (x);
 }
 
+static void helplink_delete(t_gobj *z, t_glist *glist)
+{
+    canvas_deletelinesfor(glist, (t_text *)z);
+}
 static t_widgetbehavior helplink_widgetbehavior =
 {
     helplink_getrect,
     helplink_displace,
     helplink_select,
     helplink_activate,
-    0,
+    helplink_delete,
     helplink_vis,
     helplink_click,
 };
