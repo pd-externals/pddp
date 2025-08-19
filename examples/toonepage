@@ -4,16 +4,17 @@ usage () {
   cat << EOF
 usage: toonepage <pddpsource>.xml
 EOF
+  exit $1
 }
 
-[ $# -eq 0 ] && { usage; exit 1; }
+[ $# -eq 0 ] && usage 1
 
 infile="$1"
 
 SOURCE_NAME="$(basename "${infile}")"
 SOURCE_STUB="$(basename "${SOURCE_NAME}" .xml)"
 
-[ "${SOURCE_STUB}" = "${SOURCE_NAME}" ] && { usage; exit 1; }
+[ "${SOURCE_STUB}" = "${SOURCE_NAME}" ] && usage 1
 
 xmllint >/dev/null --xinclude --postvalid "${infile}"
 xsltproc --nonet --xinclude \
