@@ -4,7 +4,11 @@ name: pd-lib-builder
 on: push
 
 jobs:
-  pd-lib-builder:
+  pd55:
     uses: pure-data/pure-data-ci/.github/workflows/pd-lib-builder.yml@main
     with:
       pd-version: "0.55-0"
+  pd56:
+    uses: pure-data/pure-data-ci/.github/workflows/pd-lib-builder.yml@main
+    with:
+      pd-version: "0.56-0"
