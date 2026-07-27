@@ -146,7 +146,8 @@ static void pddplink_click(t_pddplink *x, t_floatarg xpos, t_floatarg ypos,
     (void)xpos;(void)ypos;(void)shift;(void)ctrl;(void)alt;
 
     x->x_ishit = 1;
-    pdgui_vmess("pddplink_open", "ss"
+    pdgui_vmess("pddplink_open", "oss"
+                , x
                 , x->x_ulink->s_name
                 , x->x_dirsym->s_name
       );

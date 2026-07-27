@@ -1,5 +1,5 @@
 
-proc pddplink_open {filename dir} {
+proc pddplink_open {obj filename dir} {
     if {[string first "://" $filename] > -1} {
         menu_openfile $filename
     } elseif {[file pathtype $filename] eq "absolute"} {
@@ -11,6 +11,7 @@ proc pddplink_open {filename dir} {
         menu_doc_open $dir $filename
     } else {
         bell ;# beep on error to provide instant feedback
-        pdtk_post "\[pddplink\] ERROR file not found: $filename\n"
+        set err [_ "\[pddplink\] ERROR file not found: %s" $filename]
+        ::pdwindow::logpost ${obj} 1 "${err}\n"
     }
 }
