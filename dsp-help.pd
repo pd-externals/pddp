@@ -6,8 +6,8 @@
 #X msg 30 236 \; pd dsp \$1;
 #X text 18 103 Click in the box to the left in the object to turn on/off
 the DSP:;
-#X text 23 279 Notice that if you use the the above message \, [pddp_dsp]
-still responds to the change in DSP status. [pddp_dsp] also responds
+#X text 23 279 Notice that if you use the the above message \, [pddp/dsp]
+still responds to the change in DSP status. [pddp/dsp] also responds
 to the keyboard shortcuts.;
 #X text 138 343 On Mac OS X: Cmd-. and Cmd-/;
 #X text 47 329 On Windows and GNU/Linux: Ctrl-. and Ctrl-/;
