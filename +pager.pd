@@ -1,4 +1,5 @@
 #N canvas 680 22 435 82 10;
+#X declare -path zexy -lib zexy;
 #N canvas 265 17 496 857 guts 0;
 #X obj 190 19 loadbang;
 #X obj 60 10 bng 50 450 50 0 \$0-next \$0-next --> 12 25 1 24 #88a4fc #000000 #000000;
@@ -21,7 +22,7 @@
 #N canvas 121 53 458 308 glob 0;
 #X obj 75 46 inlet;
 #X obj 117 222 outlet;
-#X obj 281 41 zexy/operating_system;
+#X obj 281 41 operating_system;
 #X obj 281 65 select windows;
 #X obj 281 18 loadbang;
 #X obj 362 87 bang;
@@ -109,6 +110,7 @@
 #X obj 15 631 t l l l l;
 #X msg 99 641 symbol \$2;
 #X msg 23 205 0 \$1;
+#X obj 310 820 declare -path zexy -lib zexy;
 #X connect 0 0 46 0;
 #X connect 8 0 9 0;
 #X connect 11 0 14 0;

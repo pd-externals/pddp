@@ -1,7 +1,8 @@
 #N canvas 388 179 439 354 10;
+#X declare -path zexy -lib zexy;
 #X obj 169 48 inlet;
 #X obj 226 266 send \$0-pddp_print;
-#X obj 226 140 zexy/list2symbol;
+#X obj 226 140 list2symbol;
 #X text 239 225 reset to blank;
 #X obj 169 90 route bang;
 #N canvas 673 22 458 308 reset 0;
@@ -97,6 +98,7 @@
 #X connect 11 0 0 0;
 #X connect 24 0 1 0;
 #X restore 226 116 pd convert_pointer_to_anything;
+#X obj 100 310 declare -path zexy -lib zexy;
 #X connect 0 0 4 0;
 #X connect 2 0 9 0;
 #X connect 4 0 5 0;
