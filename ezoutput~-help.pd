@@ -18,6 +18,18 @@
 #X obj 150 118 osc~ 990;
 #X text 64 308 see also:;
 #X obj 138 305 output~;
+#N canvas 775 356 494 344 META 0;
+#X text 12 25 LICENSE GPL v2;
+#X text 12 5 KEYWORDS control;
+#X text 12 85 AUTHOR Hans-Christoph Steiner <hans@at.or.at> \;;
+#X text 12 105 HELP_PATCH_AUTHORS "pd meta" information added by IOhannes m zmölnig for pddp-v0.3;
+#X text 12 45 DESCRIPTION GUI replacement for [dac~ 1 2] with controls for volume \, mute and DSP;
+#X text 13 146 INLET_0 signal;
+#X text 13 166 INLET_1 signal;
+#X text 13 196 OUTLET_0 signal0 (with gain applied and DC removed);
+#X text 13 216 OUTLET_1 signal1 (with gain applied and DC removed);
+#X text 13 237 OUTLET_2 float (gain);
+#X restore 380 382 pd META;
 #X connect 0 0 3 0;
 #X connect 1 0 4 1;
 #X connect 1 0 4 0;

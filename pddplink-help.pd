@@ -21,6 +21,14 @@
 #X text 376 49 [pddplink README.txt -text local file];
 #X text 376 69 [pddplink README.txt];
 #X text 376 119 [pddplink README.txt -box];
+#N canvas 775 356 494 344 META 0;
+#X text 12 25 LICENSE GPL v2;
+#X text 12 5 KEYWORDS control;
+#X text 12 85 AUTHOR Hans-Christoph Steiner <hans@at.or.at> \;;
+#X text 12 105 HELP_PATCH_AUTHORS "pd meta" information added by IOhannes m zmölnig for pddp-v0.3;
+#X text 12 45 DESCRIPTION clickable links to files/URIs in patches;
+#X text 13 146 INLET_0 bang;
+#X restore 590 362 pd META;
 #X connect 13 0 8 0;
 #X connect 15 0 4 0;
 #X connect 17 0 12 0;

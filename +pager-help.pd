@@ -1,9 +1,12 @@
-#N canvas 368 122 488 350 10;
+#N canvas 368 122 415 350 10;
 #X obj 144 178 pddp/open +pager;
-#X text 20 60 +pager.pd is an object that allows you to navigate through
-a folder of files with "previous" and "next" buttons.;
-#X text 24 97 To use it \, copy to the folder where the files that
-you want to browser thru are. The filenames need to start with a number
-in order to be controlled by +pager.pd.;
-#X text 36 241 +pager.pd should be the first file in the list in order
-for things to work properly.;
+#X text 20 60 +pager.pd is an object that allows you to navigate through a folder of files with "previous" and "next" buttons.;
+#X text 24 97 To use it \, copy to the folder where the files that you want to browser thru are. The filenames need to start with a number in order to be controlled by +pager.pd.;
+#X text 36 241 +pager.pd should be the first file in the list in order for things to work properly.;
+#N canvas 775 356 494 344 META 0;
+#X text 12 25 LICENSE GPL v2;
+#X text 12 5 KEYWORDS control;
+#X text 12 85 AUTHOR Hans-Christoph Steiner <hans@at.or.at> \;;
+#X text 12 45 DESCRIPTION navigate files in a folder with "previous" and "next" buttons;
+#X text 12 105 HELP_PATCH_AUTHORS "pd meta" information added by IOhannes m zmölnig for pddp-v0.3;
+#X restore 350 322 pd META;

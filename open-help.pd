@@ -1,10 +1,15 @@
 #N canvas 176 296 462 312 10;
 #X text 48 47 open the specified file on the click of the button:;
 #X text 66 200 only relative paths work \, no absolute.;
-#X text 29 241 for better or worse \, the .pd is automatically appended
-;
+#X text 29 241 for better or worse \, the .pd is automatically appended;
 #X obj 56 78 pddp/open dsp-help;
-#X text 19 9 BUG: relative paths now work \, but files with no path
-don't;
+#X text 19 9 BUG: relative paths now work \, but files with no path don't;
 #X obj 57 107 pddp/open dsp-help;
 #X obj 57 137 pddp/open ../../3.audio.examples/F02.just.say;
+#N canvas 775 356 494 344 META 0;
+#X text 12 25 LICENSE GPL v2;
+#X text 12 5 KEYWORDS control;
+#X text 12 85 AUTHOR Hans-Christoph Steiner <hans@at.or.at> \;;
+#X text 12 105 HELP_PATCH_AUTHORS "pd meta" information added by IOhannes m zmölnig for pddp-v0.3;
+#X text 12 45 DESCRIPTION helper to open the specified Pd patch with a button;
+#X restore 390 282 pd META;

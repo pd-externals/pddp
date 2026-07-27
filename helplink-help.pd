@@ -15,4 +15,12 @@
 #X obj 209 341 helplink fudel;
 #X text 30 74 usage: [helplink objectname];
 #X text 256 341 <-- probably does not exist;
+#N canvas 476 295 494 344 META 0;
+#X text 12 25 LICENSE GPL v2;
+#X text 12 5 KEYWORDS control;
+#X text 12 85 AUTHOR Hans-Christoph Steiner <hans@at.or.at> \;;
+#X text 12 105 HELP_PATCH_AUTHORS "pd meta" information added by IOhannes m zmölnig for pddp-v0.3;
+#X text 13 146 INLET_0 bang;
+#X text 12 45 DESCRIPTION clickable links to helppatches;
+#X restore 380 462 pd META;
 #X connect 11 0 10 0;
